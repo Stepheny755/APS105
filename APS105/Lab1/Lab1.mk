@@ -3,12 +3,13 @@
 ## any manual changes will be erased      
 ##
 ## Debug
-ProjectName            :=Lab0
+ProjectName            :=Lab1
 ConfigurationName      :=Debug
+WorkspaceConfiguration := $(ConfigurationName)
 WorkspacePath          :=D:/Repo's/APS105-Code/APS105
-ProjectPath            :=D:/Repo's/APS105-Code/APS105/Lab0
-IntermediateDirectory  :=./Debug
-OutDir                 := $(IntermediateDirectory)
+ProjectPath            :=D:/Repo's/APS105-Code/APS105/Lab1
+IntermediateDirectory  :=../build-$(ConfigurationName)/Lab1
+OutDir                 :=../build-$(ConfigurationName)/Lab1
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
@@ -27,14 +28,13 @@ OutputSwitch           :=-o
 LibraryPathSwitch      :=-L
 PreprocessorSwitch     :=-D
 SourceSwitch           :=-c 
-OutputFile             :=$(IntermediateDirectory)/$(ProjectName)
+OutputFile             :=..\build-$(ConfigurationName)\bin\$(ProjectName)
 Preprocessors          :=
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
 PreprocessOnlySwitch   :=-E
-ObjectsFileList        :="Lab0.txt"
+ObjectsFileList        :=$(IntermediateDirectory)/ObjectsList.txt
 PCHCompileFlags        :=
-MakeDirCommand         :=makedir
 RcCmpOptions           := 
 RcCompilerName         :=C:/MinGW/bin/windres.exe
 LinkOptions            :=  
@@ -62,7 +62,7 @@ AS       := C:/MinGW/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=$(IntermediateDirectory)/Lab0.c$(ObjectSuffix) 
+Objects0=../build-$(ConfigurationName)/Lab1/Lab1.c$(ObjectSuffix) 
 
 
 
@@ -72,20 +72,20 @@ Objects=$(Objects0)
 ## Main Build Targets 
 ##
 .PHONY: all clean PreBuild PrePreBuild PostBuild MakeIntermediateDirs
-all: $(OutputFile)
+all: MakeIntermediateDirs $(OutputFile)
 
-$(OutputFile): $(IntermediateDirectory)/.d $(Objects) 
-	@$(MakeDirCommand) $(@D)
+$(OutputFile): ../build-$(ConfigurationName)/Lab1/.d $(Objects) 
+	@if not exist "..\build-$(ConfigurationName)\Lab1" mkdir "..\build-$(ConfigurationName)\Lab1"
 	@echo "" > $(IntermediateDirectory)/.d
 	@echo $(Objects0)  > $(ObjectsFileList)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
 
 MakeIntermediateDirs:
-	@$(MakeDirCommand) "./Debug"
+	@if not exist "..\build-$(ConfigurationName)\Lab1" mkdir "..\build-$(ConfigurationName)\Lab1"
+	@if not exist ""..\build-$(ConfigurationName)\bin"" mkdir ""..\build-$(ConfigurationName)\bin""
 
-
-$(IntermediateDirectory)/.d:
-	@$(MakeDirCommand) "./Debug"
+../build-$(ConfigurationName)/Lab1/.d:
+	@if not exist "..\build-$(ConfigurationName)\Lab1" mkdir "..\build-$(ConfigurationName)\Lab1"
 
 PreBuild:
 
@@ -93,18 +93,20 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/Lab0.c$(ObjectSuffix): Lab0.c
-	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Lab0.c$(ObjectSuffix) -MF$(IntermediateDirectory)/Lab0.c$(DependSuffix) -MM Lab0.c
-	$(CC) $(SourceSwitch) "D:/Repo's/APS105-Code/APS105/Lab0/Lab0.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Lab0.c$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Lab0.c$(PreprocessSuffix): Lab0.c
-	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Lab0.c$(PreprocessSuffix) Lab0.c
+../build-$(ConfigurationName)/Lab1/Lab1.c$(ObjectSuffix): Lab1.c ../build-$(ConfigurationName)/Lab1/Lab1.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "D:/Repo's/APS105-Code/APS105/Lab1/Lab1.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Lab1.c$(ObjectSuffix) $(IncludePath)
+../build-$(ConfigurationName)/Lab1/Lab1.c$(DependSuffix): Lab1.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT../build-$(ConfigurationName)/Lab1/Lab1.c$(ObjectSuffix) -MF../build-$(ConfigurationName)/Lab1/Lab1.c$(DependSuffix) -MM Lab1.c
+
+../build-$(ConfigurationName)/Lab1/Lab1.c$(PreprocessSuffix): Lab1.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../build-$(ConfigurationName)/Lab1/Lab1.c$(PreprocessSuffix) Lab1.c
 
 
--include $(IntermediateDirectory)/*$(DependSuffix)
+-include ../build-$(ConfigurationName)/Lab1//*$(DependSuffix)
 ##
 ## Clean
 ##
 clean:
-	$(RM) -r ./Debug/
+	$(RM) -r $(IntermediateDirectory)
 
 
