@@ -5,7 +5,6 @@
  * Takes input of three numbers and outputs the evaluation of some mathematical operations 
  */
 
-
 #include <stdio.h>
 
 int main(int argc, char **argv){

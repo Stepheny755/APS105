@@ -1,0 +1,1 @@
+/usr/bin/cc      CMakeFiles/Lab2.dir/Lab2Part3.c.o CMakeFiles/Lab2.dir/Lab2Part2.c.o CMakeFiles/Lab2.dir/Lab2Part1.c.o  -o /u/d/yangste9/Documents/APS105/cmake-build-Debug/output/Lab2 -rdynamic 

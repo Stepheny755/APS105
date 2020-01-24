@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/u/d/yangste9/Documents/APS105/Lab2/Lab2Part1.c
+stdio.h
+-
+
+/u/d/yangste9/Documents/APS105/Lab2/Lab2Part2.c
+stdio.h
+-
+
+/u/d/yangste9/Documents/APS105/Lab2/Lab2Part3.c
+stdio.h
+-
+math.h
+-
+

@@ -1,0 +1,1 @@
+/u/d/yangste9/Documents/APS105/cmake-build-Debug/Lab2/CMakeFiles/Lab2.dir
