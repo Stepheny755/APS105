@@ -14,7 +14,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Stephen
-Date                   :=24/01/2020
+Date                   :=29/01/2020
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/MinGW/bin/g++.exe
 SharedObjectLinkerName :=C:/MinGW/bin/g++.exe -shared -fPIC
@@ -62,9 +62,11 @@ AS       := C:/MinGW/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
+Objects0=../build-$(ConfigurationName)/Lab2/Lab2Part1.c$(ObjectSuffix) ../build-$(ConfigurationName)/Lab2/Lab2Part3.c$(ObjectSuffix) ../build-$(ConfigurationName)/Lab2/Lab2Part2.c$(ObjectSuffix) 
 
 
-Objects=
+
+Objects=$(Objects0) 
 
 ##
 ## Main Build Targets 
@@ -75,6 +77,7 @@ all: MakeIntermediateDirs $(OutputFile)
 $(OutputFile): ../build-$(ConfigurationName)/Lab2/.d $(Objects) 
 	@if not exist "..\build-$(ConfigurationName)\Lab2" mkdir "..\build-$(ConfigurationName)\Lab2"
 	@echo "" > $(IntermediateDirectory)/.d
+	@echo $(Objects0)  > $(ObjectsFileList)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
 
 MakeIntermediateDirs:
@@ -90,6 +93,30 @@ PreBuild:
 ##
 ## Objects
 ##
+../build-$(ConfigurationName)/Lab2/Lab2Part1.c$(ObjectSuffix): Lab2Part1.c ../build-$(ConfigurationName)/Lab2/Lab2Part1.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "D:/Repo's/APS105-Code/APS105/Lab2/Lab2Part1.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Lab2Part1.c$(ObjectSuffix) $(IncludePath)
+../build-$(ConfigurationName)/Lab2/Lab2Part1.c$(DependSuffix): Lab2Part1.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT../build-$(ConfigurationName)/Lab2/Lab2Part1.c$(ObjectSuffix) -MF../build-$(ConfigurationName)/Lab2/Lab2Part1.c$(DependSuffix) -MM Lab2Part1.c
+
+../build-$(ConfigurationName)/Lab2/Lab2Part1.c$(PreprocessSuffix): Lab2Part1.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../build-$(ConfigurationName)/Lab2/Lab2Part1.c$(PreprocessSuffix) Lab2Part1.c
+
+../build-$(ConfigurationName)/Lab2/Lab2Part3.c$(ObjectSuffix): Lab2Part3.c ../build-$(ConfigurationName)/Lab2/Lab2Part3.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "D:/Repo's/APS105-Code/APS105/Lab2/Lab2Part3.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Lab2Part3.c$(ObjectSuffix) $(IncludePath)
+../build-$(ConfigurationName)/Lab2/Lab2Part3.c$(DependSuffix): Lab2Part3.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT../build-$(ConfigurationName)/Lab2/Lab2Part3.c$(ObjectSuffix) -MF../build-$(ConfigurationName)/Lab2/Lab2Part3.c$(DependSuffix) -MM Lab2Part3.c
+
+../build-$(ConfigurationName)/Lab2/Lab2Part3.c$(PreprocessSuffix): Lab2Part3.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../build-$(ConfigurationName)/Lab2/Lab2Part3.c$(PreprocessSuffix) Lab2Part3.c
+
+../build-$(ConfigurationName)/Lab2/Lab2Part2.c$(ObjectSuffix): Lab2Part2.c ../build-$(ConfigurationName)/Lab2/Lab2Part2.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "D:/Repo's/APS105-Code/APS105/Lab2/Lab2Part2.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Lab2Part2.c$(ObjectSuffix) $(IncludePath)
+../build-$(ConfigurationName)/Lab2/Lab2Part2.c$(DependSuffix): Lab2Part2.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT../build-$(ConfigurationName)/Lab2/Lab2Part2.c$(ObjectSuffix) -MF../build-$(ConfigurationName)/Lab2/Lab2Part2.c$(DependSuffix) -MM Lab2Part2.c
+
+../build-$(ConfigurationName)/Lab2/Lab2Part2.c$(PreprocessSuffix): Lab2Part2.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../build-$(ConfigurationName)/Lab2/Lab2Part2.c$(PreprocessSuffix) Lab2Part2.c
+
 
 -include ../build-$(ConfigurationName)/Lab2//*$(DependSuffix)
 ##

@@ -1,0 +1,1 @@
+../build-Debug/Lab2/Lab2Part1.c.o ../build-Debug/Lab2/Lab2Part3.c.o ../build-Debug/Lab2/Lab2Part2.c.o   

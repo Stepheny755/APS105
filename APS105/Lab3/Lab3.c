@@ -236,7 +236,7 @@ int main(void){
     printf("White ");
   }else{
     printf("\nInvalid colour for the 1st band of resistor 1. Exiting the program...\n");
-    return 0;
+    return -1;
   }
 
   tempValue = resistor1Band2;
@@ -262,7 +262,7 @@ int main(void){
     printf("White ");
   }else{
     printf("\nInvalid colour for the 2nd band of resistor 1. Exiting the program...\n");
-    return 0;
+    return -1;
   }
 
   tempValue = resistor1Multiplier;
@@ -288,7 +288,7 @@ int main(void){
     printf("Silver ");
   }else{
     printf("\nInvalid colour for the multiplier band of resistor 1. Exiting the program...\n");
-    return 0;
+    return -1;
   }
 
   tempValue = resistor1Tolerance;
@@ -312,7 +312,7 @@ int main(void){
     printf("Silver ");
   }else{
     printf("\nInvalid colour for the tolerance band of resistor 1. Exiting the program...\n");
-    return 0;
+    return -1;
   }
 
   printf("\nColour Bands for resistor 2: \n");
@@ -340,7 +340,7 @@ int main(void){
     printf("White ");
   }else{
     printf("\nInvalid colour for the 1st band of resistor 2. Exiting the program...\n");
-    return 0;
+    return -1;
   }
 
   tempValue = resistor2Band2;
@@ -366,7 +366,7 @@ int main(void){
     printf("White ");
   }else{
     printf("\nInvalid colour for the 2nd band of resistor 2. Exiting the program...\n");
-    return 0;
+    return -1;
   }
 
   tempValue = resistor2Multiplier;
@@ -392,7 +392,7 @@ int main(void){
     printf("Silver ");
   }else{
     printf("\nInvalid colour for the multiplier band of resistor 2. Exiting the program...\n");
-    return 0;
+    return -1;
   }
 
   tempValue = resistor2Tolerance;
@@ -416,7 +416,7 @@ int main(void){
     printf("Silver ");
   }else{
     printf("\nInvalid colour for the tolerance band of resistor 2. Exiting the program...\n");
-    return 0;
+    return -1;
   }
 
   char *resistance1Units,*resistance2Units,*eqSeriesUnits,*eqParallelUnits;
