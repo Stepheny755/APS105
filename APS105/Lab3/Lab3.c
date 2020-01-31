@@ -2,10 +2,12 @@
 
 int main(void){
 
+  //variable declaration
   char resistor1Band1,resistor1Band2,resistor1Multiplier,resistor1Tolerance;
   char resistor2Band1,resistor2Band2,resistor2Multiplier,resistor2Tolerance;
   double resistor1Value=0.0,resistor2Value=0.0,resistor1ToleranceValue,resistor2ToleranceValue;
 
+  //read user input for resistor 1
   printf("Please enter the 1st band of resistor 1:\n");
   scanf(" %c",&resistor1Band1);
   printf("Please enter the 2nd band of resistor 1:\n");
@@ -15,6 +17,7 @@ int main(void){
   printf("Please enter the tolerance band of resistor 1:\n");
   scanf(" %c",&resistor1Tolerance);
 
+  //read user input for resistor 2
   printf("Please enter the 1st band of resistor 2:\n");
   scanf(" %c",&resistor2Band1);
   printf("Please enter the 2nd band of resistor 2:\n");
@@ -24,6 +27,7 @@ int main(void){
   printf("Please enter the tolerance band of resistor 2:\n");
   scanf(" %c",&resistor2Tolerance);
 
+  //calculate resistance value for resistor 1
   if(resistor1Band1=='K'||resistor1Band1=='k'){
     resistor1Value+=0*10;
   }else if(resistor1Band1=='B'||resistor1Band1=='b'){
@@ -44,8 +48,6 @@ int main(void){
     resistor1Value+=8*10;
   }else if(resistor1Band1=='W'||resistor1Band1=='w'){
     resistor1Value+=9*10;
-  }else{
-
   }
 
   if(resistor1Band2=='K'||resistor1Band2=='k'){
@@ -68,10 +70,9 @@ int main(void){
     resistor1Value+=8;
   }else if(resistor1Band2=='W'||resistor1Band2=='w'){
     resistor1Value+=9;
-  }else{
-
   }
 
+  //multiply resistor 1 resistance value by the multiplier value
   if(resistor1Multiplier=='K'||resistor1Multiplier=='k'){
     resistor1Value*=1;
   }else if(resistor1Multiplier=='B'||resistor1Multiplier=='b'){
@@ -92,10 +93,9 @@ int main(void){
     resistor1Value*=0.1;
   }else if(resistor1Multiplier=='S'||resistor1Multiplier=='s'){
     resistor1Value*=0.01;
-  }else{
-
   }
 
+  //assign resistor 1 tolerance
   if(resistor1Tolerance=='B'||resistor1Tolerance=='b'){
     resistor1ToleranceValue=1.0;
   }else if(resistor1Tolerance=='R'||resistor1Tolerance=='r'){
@@ -112,10 +112,9 @@ int main(void){
     resistor1ToleranceValue=5.0;
   }else if(resistor1Tolerance=='S'||resistor1Tolerance=='s'){
     resistor1ToleranceValue=10.0;
-  }else{
-
   }
 
+  //calculate resistance value for resistor 2
   if(resistor2Band1=='K'||resistor2Band1=='k'){
     resistor2Value+=0*10;
   }else if(resistor2Band1=='B'||resistor2Band1=='b'){
@@ -136,8 +135,6 @@ int main(void){
     resistor2Value+=8*10;
   }else if(resistor2Band1=='W'||resistor2Band1=='w'){
     resistor2Value+=9*10;
-  }else{
-
   }
 
   if(resistor2Band2=='K'||resistor2Band2=='k'){
@@ -160,10 +157,9 @@ int main(void){
     resistor2Value+=8;
   }else if(resistor2Band2=='W'||resistor2Band2=='w'){
     resistor2Value+=9;
-  }else{
-
   }
 
+  //multiply resistor 2 resistance value by multiplier value
   if(resistor2Multiplier=='K'||resistor2Multiplier=='k'){
     resistor2Value*=1;
   }else if(resistor2Multiplier=='B'||resistor2Multiplier=='b'){
@@ -184,10 +180,9 @@ int main(void){
     resistor2Value*=0.1;
   }else if(resistor2Multiplier=='S'||resistor2Multiplier=='s'){
     resistor2Value*=0.01;
-  }else{
-
   }
 
+  //assign resistor 2 tolerance
   if(resistor2Tolerance=='B'||resistor2Tolerance=='b'){
     resistor2ToleranceValue=1.0;
   }else if(resistor2Tolerance=='R'||resistor2Tolerance=='r'){
@@ -204,13 +199,13 @@ int main(void){
     resistor2ToleranceValue=5.0;
   }else if(resistor2Tolerance=='S'||resistor2Tolerance=='s'){
     resistor2ToleranceValue=10.0;
-  }else{
-
   }
 
+  //create temporary variables for easier programming
   char tempValue;
   double resistor1ValueTemp=resistor1Value,resistor2ValueTemp=resistor2Value;
 
+  //print color bands for resistor 1
   printf("\nColour Bands for resistor 1: \n");
 
   tempValue = resistor1Band1;
@@ -315,6 +310,7 @@ int main(void){
     return -1;
   }
 
+  //print color bands for resistor 2
   printf("\nColour Bands for resistor 2: \n");
 
   tempValue = resistor2Band1;
@@ -419,11 +415,16 @@ int main(void){
     return -1;
   }
 
+  //declare variables for further calculations
   char *resistance1Units,*resistance2Units,*eqSeriesUnits,*eqParallelUnits;
   double eqSeriesResistance,eqParallelResistance;
+
+  //calculate equivalent series resistance
   eqSeriesResistance = resistor1Value+resistor2Value;
+  //calculate equivalent parallel resistance
   eqParallelResistance = 1/(1/resistor1Value+1/resistor2Value);
 
+  //assign appropriate units to output
   if(resistor1Value>=1e6){
     resistor1ValueTemp/=1e6;
     resistance1Units = "MOhms";
@@ -434,6 +435,7 @@ int main(void){
     resistance1Units = "Ohms";
   }
 
+  //assign appropriate units to output
   if(resistor2Value>=1e6){
     resistor2ValueTemp/=1e6;
     resistance2Units = "MOhms";
@@ -444,6 +446,7 @@ int main(void){
     resistance2Units = "Ohms";
   }
 
+  //assign appropriate units to output
   if(eqSeriesResistance>=1e6){
     eqSeriesResistance/=1e6;
     eqSeriesUnits = "MOhms";
@@ -454,6 +457,7 @@ int main(void){
     eqSeriesUnits = "Ohms";
   }
 
+  //assign appropriate units to output
   if(eqParallelResistance>=1e6){
     eqParallelResistance/=1e6;
     eqParallelUnits = "MOhms";
@@ -464,11 +468,13 @@ int main(void){
     eqParallelUnits = "Ohms";
   }
 
+  //print final resistance and tolerance values of resistor 1 and 2
   printf("\nValue in ohms of resistor 1: \n");
   printf("%.2lf %s +/- %.2lf%%\n",resistor1ValueTemp,resistance1Units,resistor1ToleranceValue);
   printf("Value in ohms of resistor 2: \n");
   printf("%.2lf %s +/- %.2lf%%\n",resistor2ValueTemp,resistance2Units,resistor2ToleranceValue);
 
+  //print equivalent series and parallel resistances
   printf("\nThe Equivalent in series is %.2lf %s",eqSeriesResistance,eqSeriesUnits);
   printf("\nThe Equivalent in parallel is %.2lf %s\n",eqParallelResistance,eqParallelUnits);
 
