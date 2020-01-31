@@ -208,113 +208,131 @@ int main(void){
 
   }
 
-  char tempValue;
   double resistor1ValueTemp=resistor1Value,resistor2ValueTemp=resistor2Value;
+  char tempValue,*band1,*band2,*multiplier,*tolerance;
 
-  printf("\nColour Bands for resistor 1: \n");
+  printf("Colour Bands for resistor 1: \n");
 
   tempValue = resistor1Band1;
   if(tempValue=='K'||tempValue=='k'){
-    printf("Black ");
+    band1="Black ";
   }else if(tempValue=='B'||tempValue=='b'){
-    printf("Brown ");
+    band1="Brown ";
   }else if(tempValue=='R'||tempValue=='r'){
-    printf("Red ");
+    band1="Red ";
   }else if(tempValue=='O'||tempValue=='o'){
-    printf("Orange ");
+    band1="Orange ";
   }else if(tempValue=='E'||tempValue=='e'){
-    printf("Yellow ");
+    band1="Yellow ";
   }else if(tempValue=='G'||tempValue=='g'){
-    printf("Green ");
+    band1="Green ";
   }else if(tempValue=='U'||tempValue=='u'){
-    printf("Blue ");
+    band1="Blue ";
   }else if(tempValue=='V'||tempValue=='v'){
-    printf("Violet ");
+    band1="Violet ";
   }else if(tempValue=='Y'||tempValue=='y'){
-    printf("Grey ");
+    band1="Grey ";
   }else if(tempValue=='W'||tempValue=='w'){
-    printf("White ");
+    band1="White ";
+  }else if(tempValue=='L'||tempValue=='l'){
+    band1="Gold ";
+  }else if(tempValue=='S'||tempValue=='s'){
+    band1="Silver ";
   }else{
-    printf("\nInvalid colour for the 1st band of resistor 1. Exiting the program...\n");
-    return 0;
+    printf("Invalid colour for the 1st band of resistor 1. Exiting the program...");
+    return -1;
   }
 
   tempValue = resistor1Band2;
   if(tempValue=='K'||tempValue=='k'){
-    printf("Black ");
+    band2="Black ";
   }else if(tempValue=='B'||tempValue=='b'){
-    printf("Brown ");
+    band2="Brown ";
   }else if(tempValue=='R'||tempValue=='r'){
-    printf("Red ");
+    band2="Red ";
   }else if(tempValue=='O'||tempValue=='o'){
-    printf("Orange ");
+    band2="Orange ";
   }else if(tempValue=='E'||tempValue=='e'){
-    printf("Yellow ");
+    band2="Yellow ";
   }else if(tempValue=='G'||tempValue=='g'){
-    printf("Green ");
+    band2="Green ";
   }else if(tempValue=='U'||tempValue=='u'){
-    printf("Blue ");
+    band2="Blue ";
   }else if(tempValue=='V'||tempValue=='v'){
-    printf("Violet ");
+    band2="Violet ";
   }else if(tempValue=='Y'||tempValue=='y'){
-    printf("Grey ");
+    band2="Grey ";
   }else if(tempValue=='W'||tempValue=='w'){
-    printf("White ");
+    band2="White ";
+  }else if(tempValue=='L'||tempValue=='l'){
+    band2="Gold ";
+  }else if(tempValue=='S'||tempValue=='s'){
+    band2="Silver ";
   }else{
-    printf("\nInvalid colour for the 2nd band of resistor 1. Exiting the program...\n");
-    return 0;
+    printf("Invalid colour for the 2nd band of resistor 1. Exiting the program...");
+    return -1;
   }
 
   tempValue = resistor1Multiplier;
   if(tempValue=='K'||tempValue=='k'){
-    printf("Black ");
+    multiplier="Black ";
   }else if(tempValue=='B'||tempValue=='b'){
-    printf("Brown ");
+    multiplier="Brown ";
   }else if(tempValue=='R'||tempValue=='r'){
-    printf("Red ");
+    multiplier="Red ";
   }else if(tempValue=='O'||tempValue=='o'){
-    printf("Orange ");
+    multiplier="Orange ";
   }else if(tempValue=='E'||tempValue=='e'){
-    printf("Yellow ");
+    multiplier="Yellow ";
   }else if(tempValue=='G'||tempValue=='g'){
-    printf("Green ");
+    multiplier="Green ";
   }else if(tempValue=='U'||tempValue=='u'){
-    printf("Blue ");
+    multiplier="Blue ";
   }else if(tempValue=='V'||tempValue=='v'){
-    printf("Violet ");
+    multiplier="Violet ";
+  }else if(tempValue=='Y'||tempValue=='y'){
+    multiplier="Grey ";
+  }else if(tempValue=='W'||tempValue=='w'){
+    multiplier="White ";
   }else if(tempValue=='L'||tempValue=='l'){
-    printf("Gold ");
+    multiplier="Gold ";
   }else if(tempValue=='S'||tempValue=='s'){
-    printf("Silver ");
+    multiplier="Silver ";
   }else{
-    printf("\nInvalid colour for the multiplier band of resistor 1. Exiting the program...\n");
-    return 0;
+    printf("Invalid colour for the multiplier band of resistor 1. Exiting the program...");
+    return -1;
   }
 
   tempValue = resistor1Tolerance;
   if(tempValue=='K'||tempValue=='k'){
-    printf("Black ");
+    tolerance="Black ";
   }else if(tempValue=='B'||tempValue=='b'){
-    printf("Brown ");
+    tolerance="Brown ";
   }else if(tempValue=='R'||tempValue=='r'){
-    printf("Red ");
+    tolerance="Red ";
+  }else if(tempValue=='O'||tempValue=='o'){
+    tolerance="Orange ";
+  }else if(tempValue=='E'||tempValue=='e'){
+    tolerance="Yellow ";
   }else if(tempValue=='G'||tempValue=='g'){
-    printf("Green ");
+    tolerance="Green ";
   }else if(tempValue=='U'||tempValue=='u'){
-    printf("Blue ");
+    tolerance="Blue ";
   }else if(tempValue=='V'||tempValue=='v'){
-    printf("Violet ");
+    tolerance="Violet ";
   }else if(tempValue=='Y'||tempValue=='y'){
-    printf("Grey ");
+    tolerance="Grey ";
+  }else if(tempValue=='W'||tempValue=='w'){
+    tolerance="White ";
   }else if(tempValue=='L'||tempValue=='l'){
-    printf("Gold ");
+    tolerance="Gold ";
   }else if(tempValue=='S'||tempValue=='s'){
-    printf("Silver ");
+    tolerance="Silver ";
   }else{
-    printf("\nInvalid colour for the tolerance band of resistor 1. Exiting the program...\n");
-    return 0;
+    printf("Invalid colour for the tolerance band of resistor 1. Exiting the program...");
+    return -1;
   }
-
+  printf("%s%s%s%s",band1,band2,multiplier,tolerance);
   printf("\nColour Bands for resistor 2: \n");
 
   tempValue = resistor2Band1;
@@ -338,9 +356,13 @@ int main(void){
     printf("Grey ");
   }else if(tempValue=='W'||tempValue=='w'){
     printf("White ");
+  }else if(tempValue=='L'||tempValue=='l'){
+    printf("Gold ");
+  }else if(tempValue=='S'||tempValue=='s'){
+    printf("Silver ");
   }else{
-    printf("\nInvalid colour for the 1st band of resistor 2. Exiting the program...\n");
-    return 0;
+    printf("Invalid colour for the 1st band of resistor 2. Exiting the program...");
+    return -1;
   }
 
   tempValue = resistor2Band2;
@@ -364,9 +386,13 @@ int main(void){
     printf("Grey ");
   }else if(tempValue=='W'||tempValue=='w'){
     printf("White ");
+  }else if(tempValue=='L'||tempValue=='l'){
+    printf("Gold ");
+  }else if(tempValue=='S'||tempValue=='s'){
+    printf("Silver ");
   }else{
-    printf("\nInvalid colour for the 2nd band of resistor 2. Exiting the program...\n");
-    return 0;
+    printf("Invalid colour for the 2nd band of resistor 2. Exiting the program...");
+    return -1;
   }
 
   tempValue = resistor2Multiplier;
@@ -386,13 +412,17 @@ int main(void){
     printf("Blue ");
   }else if(tempValue=='V'||tempValue=='v'){
     printf("Violet ");
+  }else if(tempValue=='Y'||tempValue=='y'){
+    printf("Grey ");
+  }else if(tempValue=='W'||tempValue=='w'){
+    printf("White ");
   }else if(tempValue=='L'||tempValue=='l'){
     printf("Gold ");
   }else if(tempValue=='S'||tempValue=='s'){
     printf("Silver ");
   }else{
-    printf("\nInvalid colour for the multiplier band of resistor 2. Exiting the program...\n");
-    return 0;
+    printf("Invalid colour for the multiplier band of resistor 2. Exiting the program...");
+    return -1;
   }
 
   tempValue = resistor2Tolerance;
@@ -402,6 +432,10 @@ int main(void){
     printf("Brown ");
   }else if(tempValue=='R'||tempValue=='r'){
     printf("Red ");
+  }else if(tempValue=='O'||tempValue=='o'){
+    printf("Orange ");
+  }else if(tempValue=='E'||tempValue=='e'){
+    printf("Yellow ");
   }else if(tempValue=='G'||tempValue=='g'){
     printf("Green ");
   }else if(tempValue=='U'||tempValue=='u'){
@@ -410,68 +444,28 @@ int main(void){
     printf("Violet ");
   }else if(tempValue=='Y'||tempValue=='y'){
     printf("Grey ");
+  }else if(tempValue=='W'||tempValue=='w'){
+    printf("White ");
   }else if(tempValue=='L'||tempValue=='l'){
     printf("Gold ");
   }else if(tempValue=='S'||tempValue=='s'){
     printf("Silver ");
   }else{
-    printf("\nInvalid colour for the tolerance band of resistor 2. Exiting the program...\n");
-    return 0;
+    printf("Invalid colour for the tolerance band of resistor 2. Exiting the program...");
+    return -1;
   }
 
-  char *resistance1Units,*resistance2Units,*eqSeriesUnits,*eqParallelUnits;
-  double eqSeriesResistance,eqParallelResistance;
-  eqSeriesResistance = resistor1Value+resistor2Value;
-  eqParallelResistance = 1/(1/resistor1Value+1/resistor2Value);
+  char *resistance1Units,*resistance2Units;
 
-  if(resistor1Value>=1e6){
-    resistor1ValueTemp/=1e6;
-    resistance1Units = "MOhms";
-  }else if(resistor1Value>=1e3){
-    resistor1ValueTemp/=1e3;
-    resistance1Units = "KOhms";
-  }else{
-    resistance1Units = "Ohms";
-  }
-
-  if(resistor2Value>=1e6){
-    resistor2ValueTemp/=1e6;
-    resistance2Units = "MOhms";
-  }else if(resistor2Value>=1e3){
-    resistor2ValueTemp/=1e3;
-    resistance2Units = "KOhms";
-  }else{
-    resistance2Units = "Ohms";
-  }
-
-  if(eqSeriesResistance>=1e6){
-    eqSeriesResistance/=1e6;
-    eqSeriesUnits = "MOhms";
-  }else if(eqSeriesResistance>=1e3){
-    eqSeriesResistance/=1e3;
-    eqSeriesUnits = "KOhms";
-  }else{
-    eqSeriesUnits = "Ohms";
-  }
-
-  if(eqParallelResistance>=1e6){
-    eqParallelResistance/=1e6;
-    eqParallelUnits = "MOhms";
-  }else if(eqParallelResistance>=1e3){
-    eqParallelResistance/=1e3;
-    eqParallelUnits = "KOhms";
-  }else{
-    eqParallelUnits = "Ohms";
+  if(resistor1Value>=1000){
+    resistor1ValueTemp/=1000;
+    resistance1Units =
   }
 
   printf("\nValue in ohms of resistor 1: \n");
-  printf("%.2lf %s +/- %.2lf%%\n",resistor1ValueTemp,resistance1Units,resistor1ToleranceValue);
+  printf("%.2lf +/- %.2lf%%\n",resistor1ValueTemp,resistor1ToleranceValue);
   printf("Value in ohms of resistor 2: \n");
-  printf("%.2lf %s +/- %.2lf%%\n",resistor2ValueTemp,resistance2Units,resistor2ToleranceValue);
-
-  printf("\nThe Equivalent in series is %.2lf %s",eqSeriesResistance,eqSeriesUnits);
-  printf("\nThe Equivalent in parallel is %.2lf %s\n",eqParallelResistance,eqParallelUnits);
-
+  printf("%.2lf +/- %.2lf%%\n",resistor2ValueTemp,resistor2ToleranceValue);
 
   return 0;
 }
