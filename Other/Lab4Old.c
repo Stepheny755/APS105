@@ -22,7 +22,7 @@ int main(void){
 
   for(int i = 0;i<months;i++){
     amountOwed = owedAmount(interestRate,amountOwed,monthlyPurchase,monthlyPayment);
-
+    //printf("amountOwed: %.2lf\n",amountOwed);
   }
 
   printf("%.2lf",amountOwed);
@@ -31,7 +31,26 @@ int main(void){
 }
 
 double owedAmount(double interest, double owedFromPreviousMonth,double purchases, double monthlyPayment){
-  return owedFromPreviousMonth+purchases+(owedFromPreviousMonth+purchases)*interest-monthlyPayment;
+  if(owedFromPreviousMonth!=0){
+    double totalAmount = owedFromPreviousMonth+purchases;
+    double amountOwed = totalAmount + ((totalAmount)*interest);
+    printf("amountOwed: %.2lf\n",amountOwed);
+    if(monthlyPayment>amountOwed){
+      monthlyPayment=amountOwed;
+    }
+    return amountOwed-monthlyPayment;
+  }else{
+    if(owedFromPreviousMonth>monthlyPayment){
+      double totalAmount = owedFromPreviousMonth+purchases;
+      double amountOwed = totalAmount + ((totalAmount)*interest);
+      //printf("amountOwed: %.2lf\n",amountOwed);
+      if(monthlyPayment>amountOwed){
+        monthlyPayment=amountOwed;
+      }
+      return amountOwed-monthlyPayment;
+    }
+    return 0;
+  }
 }
 
 /*
