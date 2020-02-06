@@ -21,10 +21,12 @@ int main(void){
 
   interestRate=interestRate/100/12;
 
-  totalPurchasedValue+=amountOwed+monthlyPurchase*months;
+  totalPurchasedValue+=amountOwed;
   for(int i = 0;i<months;i++){
     amountOwed = owedAmount(interestRate,amountOwed,monthlyPurchase,monthlyPayment,&totalInterestCharges);
-    //printf("amountOwed: %.2lf\n",amountOwed);
+    totalPurchasedValue+=monthlyPurchase;
+    printf("amountOwed: %.2lf\n",amountOwed);
+    printf("totalPurchasedValue: %.2lf",totalPurchasedValue);
   }
 
   printf("Total purchased value: %.2lf\n",totalPurchasedValue);

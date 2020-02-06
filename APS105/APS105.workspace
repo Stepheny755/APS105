@@ -3,7 +3,9 @@
   <Project Name="Lab0" Path="Lab0/Lab0.project" Active="No"/>
   <Project Name="Lab1" Path="Lab1/Lab1.project" Active="No"/>
   <Project Name="Lab2" Path="Lab2/Lab2.project" Active="No"/>
-  <Project Name="Lab3" Path="Lab3/Lab3.project" Active="Yes"/>
+  <Project Name="Lab3" Path="Lab3/Lab3.project" Active="No"/>
+  <Project Name="Lab4" Path="Lab4/Lab4.project" Active="Yes"/>
+  <Project Name="Lab5" Path="Lab5/Lab5.project"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
@@ -11,6 +13,8 @@
       <Project Name="Lab1" ConfigName="Debug"/>
       <Project Name="Lab2" ConfigName="Debug"/>
       <Project Name="Lab3" ConfigName="Debug"/>
+      <Project Name="Lab4" ConfigName="Debug"/>
+      <Project Name="Lab5" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
@@ -18,6 +22,8 @@
       <Project Name="Lab1" ConfigName="Release"/>
       <Project Name="Lab2" ConfigName="Release"/>
       <Project Name="Lab3" ConfigName="Release"/>
+      <Project Name="Lab4" ConfigName="Release"/>
+      <Project Name="Lab5" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>
