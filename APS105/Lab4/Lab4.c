@@ -66,9 +66,10 @@ double owedAmount(double interest, double owedFromPreviousMonth,double purchases
   *totalInterest+=additionalAmount;
   
   if(totalOwedAmount<0){
-	//if the amount owed is negative (e.g. All the purchases have been paid off), then nothing is owed
+	//if the amount owed is negative (e.g. All the purchases have been paid off), then nothing is owed but interest accumulates
     return 0;
   }else{
+	//a positive amount is owed for the next month and interest is accumulated
     return totalOwedAmount;
   }
 	
