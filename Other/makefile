@@ -1,2 +1,2 @@
 all:
-	gcc Lab4New.c
+	gcc Lab7.c -lm -std=c99
