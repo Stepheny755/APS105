@@ -198,7 +198,7 @@ void printBoard(char board[][26],int n){
         currentPos=(char)row;
         row++;
       }else if(k==1){
-        currentPos = 0;
+        currentPos = " ";
       }
       printf("%c",currentPos);
     }
