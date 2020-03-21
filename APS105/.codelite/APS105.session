@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Session Name="D:\Repo's\APS105-Code\APS105\APS105.workspace">
-  <int Value="6" Name="m_selectedTab"/>
+  <int Value="8" Name="m_selectedTab"/>
   <wxString Value="D:\Repo's\APS105-Code\APS105\APS105.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
@@ -33,7 +33,7 @@
     </TabInfo>
     <TabInfo>
       <wxString Value="D:\Repo's\APS105-Code\APS105\Lab5\Lab5b.c" Name="FileName"/>
-      <int Value="45" Name="FirstVisibleLine"/>
+      <int Value="20" Name="FirstVisibleLine"/>
       <int Value="21" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
@@ -49,6 +49,20 @@
       <wxString Value="D:\Repo's\APS105-Code\APS105\Lab6\lab6.h" Name="FileName"/>
       <int Value="0" Name="FirstVisibleLine"/>
       <int Value="5" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="D:\Repo's\APS105-Code\APS105\Lab7\Lab7.c" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="195" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="D:\Repo's\APS105-Code\APS105\Lab8\lab8part1.c" Name="FileName"/>
+      <int Value="194" Name="FirstVisibleLine"/>
+      <int Value="218" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
