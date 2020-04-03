@@ -37,11 +37,12 @@ int scoreBotMoves(char board[][26],int n,int moveCount,char colour,char* row,cha
 int getAvailableMoves(char board[][26],int n,char colour,char* rows,char* cols);
 int getNumAvailableMoves(char board[][26],int n,char colour);
 
-int minimax(char board[][26],int n,int depth,int moveCount,int a,int b,char playerColour,char colour);
+int minimax(char board[][26],int n,int depth,int moveCount,clock_t processingTime,int a,int b,char playerColour,char colour);
 int makeDecision(char board[][26],int n,int depth,int moveCount,int a,int b,char colour,char* row,char* col);
 
 int nextGuess(int alpha,int beta,int numMoves);
 int getDistance(int ax,int ay,int bx,int by);
+int calculateElapsedTime(clock_t start);
 
 int cToI(char input);
 char iToC(int input);
@@ -262,22 +263,17 @@ int scoreBotMoves(char board[][26],int n,int moveCount,char colour,char* row,cha
   char tempboard[n][26];
   memcpy(&tempboard[0][0],&board[0][0],n*26*sizeof(board[0][0]));
   char brow,bcol;
-  if(moveCount>(n*n-24)){
-    validmoves=makeDecision(tempboard,n,8,moveCount,INT_MIN,INT_MAX,colour,&brow,&bcol);
-  }else if(moveCount<10){
-    validmoves=makeDecision(tempboard,n,7,moveCount,INT_MIN,INT_MAX,colour,&brow,&bcol);
-  }else{
-    validmoves=makeDecision(tempboard,n,6,moveCount,INT_MIN,INT_MAX,colour,&brow,&bcol);
-  }
+
+  validmoves=makeDecision(tempboard,n,10,moveCount,INT_MIN,INT_MAX,colour,&brow,&bcol);
   *row = brow;
   *col = bcol;
   return validmoves;
 }
 
 int countHeuristic(char board[][26],int n,char playerColour){
-  int score=0,maxsize = n*n-4;
+  int maxsize = n*n-4;
 
-  float coinParity=0.0,coinStability=0.0,cornerValue=0.0,mobilityValue=0.0,cornerCloseness=0.0;
+  float coinParity=0.0,coinStability=0.0,cornerValue=0.0,mobilityValue=0.0,cornerCloseness=0.0,winWeighting=1.0;
 
   int ptiles=0,otiles=0,pMtiles=0,oMtiles=0,pCtiles=0,oCtiles=0,pCCtiles=0,oCCtiles=0;
 
@@ -321,8 +317,11 @@ int countHeuristic(char board[][26],int n,char playerColour){
   }
 
   if(ptiles+otiles==n*n && ptiles>otiles){
-    return 100000;
+    winWeighting=1000;
+  }else if(ptiles<otiles){
+    winWeighting=-1000;
   }
+
 
   cornerValue=(pCtiles-oCtiles)*25.0;
   cornerCloseness=(pCCtiles-oCCtiles)*-12.5;
@@ -336,12 +335,13 @@ int countHeuristic(char board[][26],int n,char playerColour){
     coinParity = (double) (100.0*ptiles)/(ptiles+otiles)*((ptiles>otiles)?1:-1);
   }
   if(pMtiles!=oMtiles){
-    coinStability = (double) (100.0*pMtiles)/(pMtiles+oMtiles)*((oMtiles>pMtiles)?1:-1);
+    coinStability = (double) (100.0*pMtiles)/(pMtiles+oMtiles)*((pMtiles>oMtiles)?1:-1);
   }
+  //printBoard(board,n);
+  float score = winWeighting+(60*coinParity+2000*cornerValue+750*cornerCloseness+100*coinStability+100*mobilityValue);
+  //printf("%lf %lf %lf %lf %lf score: %d\n\n",coinParity,cornerValue,cornerCloseness,coinStability,mobilityValue,score);
 
-  score = (int) 60*coinParity+1500*cornerValue+1000*cornerCloseness+80*coinStability+80*mobilityValue;
-
-  return score;
+  return (int)score;
 }
 
 int makeDecision(char board[][26],int n,int depth,int moveCount,int a,int b,char colour,char* row,char* col){
@@ -354,10 +354,11 @@ int makeDecision(char board[][26],int n,int depth,int moveCount,int a,int b,char
   if(nMoves==0){
     return 0;
   }else{
+    clock_t begin = clock();
     cRow = rowArr[0],colArr[0];
     for(int i = 0;i < nMoves;i++){
       makeMove(board,n,colour,rowArr[i],colArr[i]);
-      int val = minimax(board,n,depth-1,moveCount+1,a,b,(colour),getOppositeColour(colour));
+      int val = minimax(board,n,depth-1,moveCount+1,begin,a,b,(colour),getOppositeColour(colour));
       if(val>maxval){
         maxval = val;
         cRow = rowArr[i];
@@ -367,10 +368,11 @@ int makeDecision(char board[][26],int n,int depth,int moveCount,int a,int b,char
   }
   *row = cRow;
   *col = cCol;
+  printf("score: %d\n",maxval);
   return nMoves;
 }
 
-int minimax(char board[][26],int n,int depth,int moveCount,int a,int b,char playerColour,char colour){
+int minimax(char board[][26],int n,int depth,int moveCount,clock_t processingTime,int a,int b,char playerColour,char colour){
   int maxsize = n*n-4;
   if(depth==0||moveCount == maxsize){
     return countHeuristic(board,n,playerColour)*((colour==playerColour)?1:-1);
@@ -380,14 +382,15 @@ int minimax(char board[][26],int n,int depth,int moveCount,int a,int b,char play
   int nMoves=getAvailableMoves(board,n,colour,rowArr,colArr);
   int value = INT_MIN;
   if(nMoves==0){
-    return minimax(board,n,depth-1,moveCount+1,-b,-a,playerColour,getOppositeColour(colour));
+    return minimax(board,n,depth-1,moveCount+1,processingTime,-b,-a,playerColour,getOppositeColour(colour));
   }else{
     int maxval = (colour==playerColour)?INT_MIN:INT_MAX;
     for(int i = 0;i < nMoves;i++){
       char tempboard[n][26];
       memcpy(&tempboard[0][0],&board[0][0],n*26*sizeof(board[0][0]));
       makeMove(tempboard,n,colour,rowArr[i],colArr[i]);
-      value=max(value,-1*minimax(tempboard,n,depth-1,moveCount+1,-b,-a,playerColour,getOppositeColour(colour)));
+      value=minimax(tempboard,n,depth-1,moveCount+1,processingTime,-b,-a,playerColour,getOppositeColour(colour));
+      //printf("%c%c move on %c's turn (turn number = %d) has score %d\n",rowArr[i],colArr[i],colour,moveCount,value);
       if(colour==playerColour){
         if(value>maxval){
           maxval = value;
@@ -400,6 +403,9 @@ int minimax(char board[][26],int n,int depth,int moveCount,int a,int b,char play
       a=max(a,value);
       if(a>=b){
         break;
+      }
+      if(calculateElapsedTime(processingTime)>950){
+        return maxval;
       }
     }
     return maxval;
@@ -603,6 +609,13 @@ bool readCharSeq(char* row,char* col){
 void getSize(int* n){
   printf("Enter the board dimension: ");
   scanf("%d",n);
+}
+
+int calculateElapsedTime(clock_t start){
+  clock_t current = clock();
+  double duration = (double)(current-start)/CLOCKS_PER_SEC;
+  duration*=1000;
+  return (int) duration;
 }
 
 void createBoard(char board[][26],int n){

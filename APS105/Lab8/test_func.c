@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <time.h>
 
 int getDistance(int ax,int ay,int bx,int by){
   return (ax-bx)*((ax>bx)?1:-1)+(ay-by)*((ay>by)?1:-1);
 }
-
+/*
 int getAvailableMoves(char board[][26],int n,char colour,char* rows,char* cols){
   int size = 0,maxsize = n*n-4;
   for(int i = 0;i < n;i++){
@@ -20,7 +21,7 @@ int getAvailableMoves(char board[][26],int n,char colour,char* rows,char* cols){
   cols[size]='\0';
   return size;
 }
-
+*/
 bool isCornerClose(char board[][26],int n,int ax,int ay){
   n = n-1;
   if((getDistance(ax,ay,0,0)==1||(ax==1&&ay==1))&&board[0][0]=='U'){
@@ -80,8 +81,15 @@ void printBoard(char board[][26],int n){
 
 }
 
-int main(void){
+int calculateElapsedTime(clock_t start){
+  clock_t current = clock();
+  double duration = (double)(current-start)/CLOCKS_PER_SEC;
+  duration*=1000;
+  return (int) duration;
+}
 
+int main(void){
+/*
   int n = 8;
   char board[n][26];
   createBoard(board,n);
@@ -93,7 +101,16 @@ int main(void){
     }
     printf("\n");
   }
+*/
+  clock_t begin = clock();
 
+  for(int i = 0;i < 100;i++){
+    for(int j = 0;j < 100;j++){
+      printf("%d%d\n",i,j);
+    }
+  }
+
+ printf("time: %d\n",calculateElapsedTime(begin));
 
   return 0;
 }
