@@ -34,39 +34,44 @@ Node* createNode(char* data){
   return new;
 }
 
-void initNamedList(char* listName,NamedList *list){
-  LinkedList* value = (LinkedList*)malloc(sizeof(LinkedList));
-  initList(value);
-  list->name=listName;
-  list->list=value;
-}
-
 void initLinkedList(LinkedList *list) {
   list->head = NULL;
   list->tail = NULL;
 }
 
+void initNamedList(char* listName,NamedList *list){
+  LinkedList* value = (LinkedList*)malloc(sizeof(LinkedList));
+  initLinkedList(value);
+  list->name=listName;
+  list->list=value;
+}
+
 void parseList(char** rawRecipes){
-  int i = 0;
-  char* s = rawRecipes[0];
+  int i = 0,r = 0;
+  char* currentElement = rawRecipes[0];
 
   LinkedList* Ingredients = (LinkedList*)malloc(sizeof(LinkedList));
   LinkedList* Recipes = (LinkedList*)malloc(sizeof(LinkedList));
-  initList(Ingredients);
-  initList(Recipes);
+  initLinkedList(Ingredients);
+  initLinkedList(Recipes);
 
-  Recipe* currentRecipe = (Recipe*)malloc(sizeof(Recipe));
-  initNamedList(currentRecipe);
+  NamedList* currentRecipe;
 
-  while(s!=""){
-    s = rawRecipes[i];
-    printf("%c\n",s[0]);
-    printf("%s\n",s);
-    if(s[0]=='0'){
-      Recipes->head
-      printf("%s\n",s);
+  while(currentElement!=""){
+    currentElement = rawRecipes[i];
+    char* currentIngredient = shiftStr(currentElement);
+
+    if(currentElement[0]=='0'){
+      r=1;
+      currentRecipe = (NamedList*)malloc(sizeof(NamedList));
+      initNamedList(currentIngredient,currentRecipe);
+      printf("%s\n",shiftStr(currentElement));
     }
     i++;
+    if(r>0){
+      Node* ingredient = createNode(currentIngredient);
+
+    }
   }
 }
 
