@@ -14,7 +14,8 @@ int correct(int a){
 int main(void){
   int number;
   number = correct(121);
-  printf("The")
+  printf("The correct value for 121 is %d\n",correct(121));
+  return 0;
 }
 
 1111001
