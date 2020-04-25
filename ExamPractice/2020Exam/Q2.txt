@@ -1,0 +1,43 @@
+Q2 A:
+
+for(int i = 0;i<10;i++){
+  char* temp = getInstring();
+  char* new = (char*)malloc(sizeof(char)*(strlen(temp)+1));
+  strcpy(new,temp);
+  pInstring[i]=new;
+}
+
+
+Q2 B:
+
+*(&(**a)+2) is the value at the address of the 5th index of q, or 15.
+
+
+Q2 C:
+
+- return type of function should be int
+- int i should start at 0
+- the condition for the if statement should be checking equivalency using '==' instead of assigning with '='
+- declare count outside the for loop and increment inside the for loop
+
+Correct code:
+
+int counte(char* instr){
+  int count = 0;
+  for(int i = 0;i < strlen(instr);i++){
+    if(instr[i]=='e') count++;
+  }
+  return count;
+}
+
+
+Q2 D:
+
+typedef struct animal{
+  int numFeet;
+}mammal;
+
+int main(void){
+  mammal tiger;
+  tiger.numFeet=4;
+}

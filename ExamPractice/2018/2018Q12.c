@@ -11,7 +11,7 @@ int main(void){
   const double E = 2718281828459045;
   int digits[16];
   for(int i = 0;i < 16;i++){
-
+    digits[i]=(int)E
   }
 
 
